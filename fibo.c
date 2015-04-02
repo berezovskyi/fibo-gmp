@@ -1,6 +1,6 @@
 /*
- * Source: http://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
- * Ref: http://www.ics.uci.edu/~eppstein/161/960109.html
+ * Based on http://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
+ * Originally inspired by http://www.ics.uci.edu/~eppstein/161/960109.html
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,7 +11,7 @@ void multiply(mpz_t F[2][2], mpz_t M[2][2]);
 void power(mpz_t F[2][2], int n);
 
 /* function that returns nth Fibonacci number */
-void fib(int n, mpz_t result)
+void fib(unsigned long int n, mpz_t result)
 {
 	mpz_t F[2][2];
 
@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
 
 	if (argc == 2) {
 		mpz_init(result);
-		int n = atoi(argv[1]);
+		unsigned long int n = strtoul(argv[1], NULL, 0);
 		fib(n, result);
 		gmp_printf("%d%s Fibonacci number: %Zd\n", n, ord_indicator(n), result);
 		mpz_clear(result);
