@@ -8,22 +8,17 @@
 #include <gmp.h>
 
 void multiply(mpz_t F[2][2], mpz_t M[2][2]);
- 
 void power(mpz_t F[2][2], int n);
  
 /* function that returns nth Fibonacci number */
 void fib(int n, mpz_t result)
 {
 	mpz_t F[2][2];
-	mpz_init(F[0][0]);
-	mpz_init(F[0][1]);
-	mpz_init(F[1][0]);
-	mpz_init(F[1][1]);
 
-	mpz_set_ui(F[0][0], 1);
-	mpz_set_ui(F[0][1], 1);
-	mpz_set_ui(F[1][0], 1);
-	mpz_set_ui(F[1][1], 0);
+	mpz_init_set_ui(F[0][0], 1);
+	mpz_init_set_ui(F[0][1], 1);
+	mpz_init_set_ui(F[1][0], 1);
+	mpz_init_set_ui(F[1][1], 0);
 
 	if (n == 0)
 		return;
@@ -38,15 +33,11 @@ void power(mpz_t F[2][2], int n)
 		return;
 	
 	mpz_t M[2][2];
-	mpz_init(M[0][0]);
-	mpz_init(M[0][1]);
-	mpz_init(M[1][0]);
-	mpz_init(M[1][1]);
 
-	mpz_set_ui(M[0][0], 1);
-	mpz_set_ui(M[0][1], 1);
-	mpz_set_ui(M[1][0], 1);
-	mpz_set_ui(M[1][1], 0); 
+	mpz_init_set_ui(M[0][0], 1);
+	mpz_init_set_ui(M[0][1], 1);
+	mpz_init_set_ui(M[1][0], 1);
+	mpz_init_set_ui(M[1][1], 0); 
 	
 	power(F, n/2);
 	multiply(F, F);
