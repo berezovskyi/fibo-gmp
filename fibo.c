@@ -1,11 +1,10 @@
 /*
  * Source: http://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
  * Ref: http://www.ics.uci.edu/~eppstein/161/960109.html
- *
- * Method used is "recursive powering"
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 #include <gmp.h>
 
 void multiply(mpz_t F[2][2], mpz_t M[2][2]);
@@ -81,21 +80,37 @@ void multiply(mpz_t F[2][2], mpz_t M[2][2])
 
 	mpz_clears(x,y,z,w,NULL);
 }
- 
-/* Driver program to test above function */
+
+char* ord_indicator(unsigned int n)
+{
+	int rem_h = n % 100;
+	if(rem_h >= 10 && rem_h <= 20) {
+		return "th";
+	}
+	int rem_ten = n % 10;
+	switch (rem_ten) {
+		case 1:
+			return "st";
+		case 2:
+			return "nd";
+		case 3:
+			return "rd";
+		default:
+			return "th";
+	}
+}
+
 int main(int argc, char* argv[])
 {
-	int n;
 	mpz_t result;
-	mpz_init(result);
 	if (argc == 2) {
-		n = atoi(argv[1]); 
+		mpz_init(result);
+		int n = atoi(argv[1]); 
 		fib(n, result);
-		gmp_printf("%dth Fibonacci number: %Zd\n", n, result);
+		gmp_printf("%d%s Fibonacci number: %Zd\n", n, ord_indicator(n), result);
 		mpz_clear(result);
 		return 0;
 	}
-	mpz_clear(result);	
 	printf("Specify which Fibonacci number has to be found.\n");
-	return 1;
+	return EINVAL;
 }
