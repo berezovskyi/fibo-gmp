@@ -7,6 +7,9 @@ and recursive powering. Program is written in C99 and uses GNU MP library.
 Read more about the approach on the
 [ICS 161 Lecture notes](http://www.ics.uci.edu/~eppstein/161/960109.html) page.
 
+The license is valid as long as you link against GNU MP
+[dynamically](http://programmers.stackexchange.com/a/158792/53086).
+
 ## Installation
 
 In order to build the program, simply run `make`. The program depends on the
