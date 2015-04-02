@@ -1,4 +1,4 @@
-CC=gcc -O2 -g -Wall -Werror -std=c99
+CC=gcc -O2 -g -Wall -Werror -Wextra -std=c99 -pedantic-errors
 prefix=/usr
 executable=fibo
 %.o: %.c
